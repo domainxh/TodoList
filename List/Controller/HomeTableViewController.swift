@@ -13,6 +13,12 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupTableView()
+    }
+
+    private func setupTableView() {
+        tableView.register(HomeCell.self, forCellReuseIdentifier: HomeCell.reuseIdentifier)
+        tableView.tableFooterView = UIView()
         view.backgroundColor = .white
     }
 
@@ -21,7 +27,7 @@ class HomeTableViewController: UITableViewController {
         navigationItem.title = "To Do Lists"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.branchGreen()
+        navigationController?.navigationBar.barTintColor = .branchGreen
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
@@ -39,7 +45,12 @@ class HomeTableViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath)
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
 }
 
