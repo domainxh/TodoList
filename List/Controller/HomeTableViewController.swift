@@ -45,7 +45,8 @@ class HomeTableViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath) as? HomeCell else { return UITableViewCell() }
+        cell.configureCell()
         return cell
     }
 

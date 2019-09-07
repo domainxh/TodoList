@@ -8,8 +8,10 @@
 
 import UIKit
 
+private let kFontAvenirNext = "Avenir Next"
+
 extension UIFont {
-//    class var nameLabel: UIFont {
-//        return UIFont(name: kFontAvenirNext, size: 16)!
-//    }
+    class var homeListLabel: UIFont {
+        return UIFont(name: kFontAvenirNext, size: 20)!
+    }
 }
