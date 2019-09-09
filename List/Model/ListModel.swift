@@ -9,7 +9,8 @@
 import Foundation
 
 struct ListModel {
-    let name: String
+    var name: String
+    var date: Date?
 }
 
 

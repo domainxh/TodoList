@@ -9,21 +9,26 @@
 import UIKit
 
 protocol CreateTodoListDelegate: AnyObject {
-    func AddTodoList(listModel: ListModel)
+    func addTodoList(description: String, date: Date?)
 }
 
 class NewListViewController: UIViewController {
 
     weak var delegate: CreateTodoListDelegate?
-    
+
     private let textView: UITextView = {
         let tv = UITextView()
         tv.text = "Describe what this list is for"
         tv.textColor = .lightGray
         tv.textAlignment = .left
-        tv.translatesAutoresizingMaskIntoConstraints = false
         tv.font = UIFont.homeListLabel
         return tv
+    }()
+
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.homeListLabel
+        return label
     }()
 
     override func viewDidLoad() {
@@ -51,11 +56,9 @@ class NewListViewController: UIViewController {
     }
 
     @objc private func handleSave() {
-        if let text = textView.text, text != "Describe what this list is for" {
-            dismiss(animated: true) {
-                let listModel = ListModel(name: self.textView.text)
-                self.delegate?.AddTodoList(listModel: listModel)
-            }
+        guard let text = textView.text, text != "Describe what this list is for" else { return }
+        dismiss(animated: true) {
+            self.delegate?.addTodoList(description: self.textView.text, date: nil)
         }
     }
 }

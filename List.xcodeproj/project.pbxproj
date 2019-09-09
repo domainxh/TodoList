@@ -18,6 +18,7 @@
 		21E3F4632323956F00329DF8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4622323956F00329DF8 /* HomeCell.swift */; };
 		21E3F4672323A16B00329DF8 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4662323A16B00329DF8 /* ListModel.swift */; };
 		21E3F46B2323ACE700329DF8 /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F46A2323ACE700329DF8 /* NewListViewController.swift */; };
+		21E3F46E2325E70900329DF8 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F46D2325E70900329DF8 /* ListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		21E3F4622323956F00329DF8 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		21E3F4662323A16B00329DF8 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		21E3F46A2323ACE700329DF8 /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
+		21E3F46D2325E70900329DF8 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				21A8DD2E2321E04A00E2A770 /* Utilities */,
 				21A8DD3A23220A6E00E2A770 /* Controller */,
+				21E3F46C2325E6DC00329DF8 /* ViewModel */,
 				21A8DD3723220A5700E2A770 /* Model */,
 				21A8DD3923220A6400E2A770 /* View */,
 				21A8DD192321DCA200E2A770 /* AppDelegate.swift */,
@@ -112,6 +115,14 @@
 				21E3F46A2323ACE700329DF8 /* NewListViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		21E3F46C2325E6DC00329DF8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				21E3F46D2325E70900329DF8 /* ListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +204,7 @@
 				21A8DD1A2321DCA200E2A770 /* AppDelegate.swift in Sources */,
 				21A8DD322321E47500E2A770 /* BaseNavigationController.swift in Sources */,
 				21A8DD222321DCA200E2A770 /* List.xcdatamodeld in Sources */,
+				21E3F46E2325E70900329DF8 /* ListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

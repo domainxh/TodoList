@@ -10,11 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
 
-    private var todoLists = [
-        ListModel(name: "place holder 1"),
-        ListModel(name: "place holder 2"),
-        ListModel(name: "place holder 3"),
-    ]
+    private var viewModel = ListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +44,12 @@ extension HomeTableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath) as? HomeCell else {
             return UITableViewCell()
         }
-
-        let model = todoLists[indexPath.row]
-        cell.configureCell(listModel: model)
+        cell.configureCell(listViewModel: viewModel, indexPath: indexPath)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoLists.count
+        return viewModel.todoLists.count
     }
 }
 
@@ -72,9 +66,9 @@ extension HomeTableViewController {
 
 // MARK: - CreateTodoListDelegate
 extension HomeTableViewController: CreateTodoListDelegate {
-    func AddTodoList(listModel: ListModel) {
-        todoLists.append(listModel)
-        let newIndexPath = IndexPath(row: todoLists.count - 1, section: 0)
+    func addTodoList(description: String, date: Date?) {
+        viewModel.addTodoList(description: description, date: date)
+        let newIndexPath = IndexPath(row: viewModel.todoLists.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
 }

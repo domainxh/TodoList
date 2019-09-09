@@ -26,9 +26,10 @@ class HomeCell: UITableViewCell {
         addConstraintsWithFormat("V:|-\(verticalPadding)-[v0]-\(verticalPadding)-|", views: label)
     }
 
-    func configureCell(listModel: ListModel) {
+    func configureCell(listViewModel: ListViewModel, indexPath: IndexPath) {
         setupView()
-        label.text = listModel.name
+        let todoDescription = listViewModel.todoLists[indexPath.row].name
+        label.text = todoDescription
     }
 }
 
