@@ -26,9 +26,9 @@ class HomeCell: UITableViewCell {
         addConstraintsWithFormat("V:|-\(verticalPadding)-[v0]-\(verticalPadding)-|", views: label)
     }
 
-    func configureCell() {
-        // Placeholder method...
+    func configureCell(listModel: ListModel) {
         setupView()
+        label.text = listModel.name
     }
 }
 

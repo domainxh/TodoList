@@ -16,6 +16,8 @@
 		21A8DD34232209AB00E2A770 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD33232209AB00E2A770 /* UIView+.swift */; };
 		21A8DD3623220A3A00E2A770 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD3523220A3A00E2A770 /* UIFont+.swift */; };
 		21E3F4632323956F00329DF8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4622323956F00329DF8 /* HomeCell.swift */; };
+		21E3F4672323A16B00329DF8 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4662323A16B00329DF8 /* ListModel.swift */; };
+		21E3F46B2323ACE700329DF8 /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F46A2323ACE700329DF8 /* NewListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		21A8DD33232209AB00E2A770 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		21A8DD3523220A3A00E2A770 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		21E3F4622323956F00329DF8 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		21E3F4662323A16B00329DF8 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		21E3F46A2323ACE700329DF8 /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +70,10 @@
 				21A8DD3A23220A6E00E2A770 /* Controller */,
 				21A8DD3723220A5700E2A770 /* Model */,
 				21A8DD3923220A6400E2A770 /* View */,
-				21A8DD3823220A5C00E2A770 /* ViewModel */,
 				21A8DD192321DCA200E2A770 /* AppDelegate.swift */,
 				21A8DD232321DCA300E2A770 /* Assets.xcassets */,
 				21A8DD282321DCA300E2A770 /* Info.plist */,
 				21A8DD202321DCA200E2A770 /* List.xcdatamodeld */,
-				21A8DD312321E47500E2A770 /* BaseNavigationController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -89,15 +91,9 @@
 		21A8DD3723220A5700E2A770 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				21E3F4662323A16B00329DF8 /* ListModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		21A8DD3823220A5C00E2A770 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		21A8DD3923220A6400E2A770 /* View */ = {
@@ -111,7 +107,9 @@
 		21A8DD3A23220A6E00E2A770 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				21A8DD312321E47500E2A770 /* BaseNavigationController.swift */,
 				21A8DD1B2321DCA200E2A770 /* HomeTableViewController.swift */,
+				21E3F46A2323ACE700329DF8 /* NewListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -185,6 +183,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E3F4672323A16B00329DF8 /* ListModel.swift in Sources */,
+				21E3F46B2323ACE700329DF8 /* NewListViewController.swift in Sources */,
 				21A8DD34232209AB00E2A770 /* UIView+.swift in Sources */,
 				21A8DD1C2321DCA200E2A770 /* HomeTableViewController.swift in Sources */,
 				21E3F4632323956F00329DF8 /* HomeCell.swift in Sources */,

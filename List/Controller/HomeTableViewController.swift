@@ -10,6 +10,12 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
 
+    private var todoLists = [
+        ListModel(name: "place holder 1"),
+        ListModel(name: "place holder 2"),
+        ListModel(name: "place holder 3"),
+    ]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -23,35 +29,33 @@ class HomeTableViewController: UITableViewController {
     }
 
     private func setupNavigationBar() {
-        setupAddButton()
         navigationItem.title = "To Do Lists"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = .branchGreen
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    }
-
-    private func setupAddButton() {
         let image = UIImage(named: "PlusButton")?.withRenderingMode(.alwaysOriginal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleAddCompany))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleAdd))
     }
 
-    @objc private func handleAddCompany() {
-        return
+    @objc private func handleAdd() {
+        let newListViewController = NewListViewController()
+        let navigationController = BaseNavigationController(rootViewController: newListViewController)
+        newListViewController.delegate = self
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath) as? HomeCell else { return UITableViewCell() }
-        cell.configureCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeCell.reuseIdentifier, for: indexPath) as? HomeCell else {
+            return UITableViewCell()
+        }
+
+        let model = todoLists[indexPath.row]
+        cell.configureCell(listModel: model)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return todoLists.count
     }
 }
 
@@ -63,5 +67,14 @@ extension HomeTableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return
+    }
+}
+
+// MARK: - CreateTodoListDelegate
+extension HomeTableViewController: CreateTodoListDelegate {
+    func AddTodoList(listModel: ListModel) {
+        todoLists.append(listModel)
+        let newIndexPath = IndexPath(row: todoLists.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
 }

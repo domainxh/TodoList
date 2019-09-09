@@ -14,15 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().barTintColor = .branchGreen
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().tintColor = .white
+
         let homeTableViewController = HomeTableViewController()
         let navController = BaseNavigationController(rootViewController: homeTableViewController)
-        
+
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = navController
-        
+
         return true
     }
 
