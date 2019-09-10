@@ -60,7 +60,6 @@ class NewListViewController: UIViewController {
         navigationItem.title = list == nil ?
             NSLocalizedString("NewListVC.NavigationTitle.Create", comment: "") :
             NSLocalizedString("NewListVC.NavigationTitle.Edit", comment: "")
-
     }
 
     private func setupUI() {
