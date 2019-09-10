@@ -8,11 +8,13 @@
 
 import CoreData
 
+private let kListModel = "ListModel"
+
 class CoreDataStack {
     static let shared = CoreDataStack()
     
     let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "ListModel")
+        let container = NSPersistentContainer(name: kListModel)
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error {
                 fatalError("Loading failed: \(error)")

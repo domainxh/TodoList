@@ -9,14 +9,17 @@
 import CoreData
 import UIKit
 
+private let kList = "List"
+private let kName = "name"
+private let kDate = "date"
+
 class ListViewModel {
 
     var todoLists = [List]()
     private let context = CoreDataStack.shared.persistentContainer.viewContext
 
     func fetchTodoLists() {
-        let fetchRequest = NSFetchRequest<List>(entityName: "List")
-
+        let fetchRequest = NSFetchRequest<List>(entityName: kList)
         do {
             let lists = try context.fetch(fetchRequest)
             self.todoLists = lists
@@ -26,9 +29,9 @@ class ListViewModel {
     }
 
     func addTodoList(description: String, date: Date) {
-        let todoLists = NSEntityDescription.insertNewObject(forEntityName: "List", into: context)
-        todoLists.setValue(description, forKey: "name")
-        todoLists.setValue(date, forKey: "date")
+        let todoLists = NSEntityDescription.insertNewObject(forEntityName: kList, into: context)
+        todoLists.setValue(description, forKey: kName)
+        todoLists.setValue(date, forKey: kDate)
         saveTodoList()
     }
 

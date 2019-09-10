@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  List
+
+  Created by Xiaoheng Pan on 9/10/19.
+  Copyright © 2019 Xiaoheng Pan. All rights reserved.
+*/
+
+"HomeVC.NavigationTitle.TodoList" = "To Do List";
+"HomeVC.TableView.Delete" = "Delete";
+
+"NewListVC.TextView.Description" = "Describe what this list is for";
+"NewListVC.NavigationTitle.Create" = "Create To Do";
+"NewListVC.NavigationTitle.Edit" = "Edit To Do";
+"NewListVC.NavigationItem.Cancel" = "Cancel";
+"NewListVC.NavigationItem.Save" = "Save";
+
+"FooterView.EmptyDescription" = "No todo items today!";

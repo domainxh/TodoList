@@ -8,10 +8,10 @@
 
 import UIKit
 
-class HomeCell: UITableViewCell {
+private let horizontalPadding = 12
+private let verticalPadding = 12
 
-    private let horizontalPadding = 12
-    private let verticalPadding = 12
+class HomeCell: UITableViewCell {
 
     private let descriptionLabel: UILabel = {
         let label = UILabel()

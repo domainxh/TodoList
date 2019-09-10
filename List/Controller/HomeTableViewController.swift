@@ -26,7 +26,7 @@ class HomeTableViewController: UITableViewController {
     }
 
     private func setupNavigationBar() {
-        navigationItem.title = "To Do Lists"
+        navigationItem.title = NSLocalizedString("HomeVC.NavigationTitle.TodoList", comment: "")
         let plusImage = UIImage(named: "PlusButton")?.withRenderingMode(.alwaysOriginal)
         let resetImage = UIImage(named: "ResetButton")?.withRenderingMode(.alwaysOriginal)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: plusImage, style: .plain, target: self, action: #selector(handleAdd))
@@ -69,6 +69,14 @@ extension HomeTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.todoLists.count
     }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return FooterView()
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return viewModel.todoLists.isEmpty ? 150 : 0
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -85,7 +93,8 @@ extension HomeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+        let delete = NSLocalizedString("HomeVC.TableView.Delete", comment: "")
+        let deleteAction = UITableViewRowAction(style: .destructive, title: delete) { (_, indexPath) in
             self.viewModel.deleteTodoList(index: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }

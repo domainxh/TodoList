@@ -7,17 +7,18 @@
 //
 
 import UIKit
-import CoreData
 
 protocol TodoListDelegate: AnyObject {
     func editTodoList(list: List)
     func addTodoList(description: String, date: Date)
 }
 
+private let kTopPadding = 13
+private let kDateLabelHeight = 30
+
 class NewListViewController: UIViewController {
 
     weak var delegate: TodoListDelegate?
-    private let dateLabelHeight = 30
     private let currentDate = Date()
     
     var list: List? {
@@ -30,7 +31,7 @@ class NewListViewController: UIViewController {
 
     private let textView: UITextView = {
         let tv = UITextView()
-        tv.text = "Describe what this list is for"
+        tv.text = NSLocalizedString("NewListVC.TextView.Description", comment: "")
         tv.textColor = .lightGray
         tv.textAlignment = .left
         tv.font = UIFont.homeListLabel
@@ -56,19 +57,24 @@ class NewListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationItem.title = list == nil ? "Create New List" : "Edit List"
+        navigationItem.title = list == nil ?
+            NSLocalizedString("NewListVC.NavigationTitle.Create", comment: "") :
+            NSLocalizedString("NewListVC.NavigationTitle.Edit", comment: "")
+
     }
 
     private func setupUI() {
         view.addSubviews(textView, dateLabel)
         view.addConstraintsWithFormat("H:|-[v0]-|", views: textView)
         view.addConstraintsWithFormat("H:|-[v0]-|", views: dateLabel)
-        view.addConstraintsWithFormat("V:|-14-[v0(\(dateLabelHeight))]-[v1]-|", views: dateLabel, textView)
+        view.addConstraintsWithFormat("V:|-\(kTopPadding)-[v0(\(kDateLabelHeight))]-[v1]-|", views: dateLabel, textView)
     }
 
     private func setupNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
+        let cancel = NSLocalizedString("NewListVC.NavigationItem.Cancel", comment: "")
+        let save = NSLocalizedString("NewListVC.NavigationItem.Save", comment: "")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: cancel, style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: save, style: .plain, target: self, action: #selector(handleSave))
     }
 
     @objc private func handleCancel() {
@@ -84,7 +90,9 @@ class NewListViewController: UIViewController {
     }
 
     private func createList() {
-        guard let text = textView.text, text != "Describe what this list is for" else { return }
+        guard let text = textView.text, text != NSLocalizedString("NewListVC.TextView.Description", comment: "") else {
+            return
+        }
         dismiss(animated: true) {
             guard let description = self.textView.text else { return }
             self.delegate?.addTodoList(description: description, date: self.currentDate)
