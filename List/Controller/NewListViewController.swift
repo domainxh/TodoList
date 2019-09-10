@@ -72,7 +72,11 @@ class NewListViewController: UIViewController {
     }
 
     @objc private func handleCancel() {
-        dismiss(animated: true, completion: nil)
+        if let _ = list {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
     @objc private func handleSave() {
@@ -88,12 +92,11 @@ class NewListViewController: UIViewController {
     }
 
     private func editList() {
-        dismiss(animated: true) {
-            guard let list = self.list else { return }
-            list.name = self.textView.text
-            list.date = self.currentDate
-            self.delegate?.editTodoList(list: list)
-        }
+        guard let list = self.list else { return }
+        list.name = textView.text
+        list.date = currentDate
+        delegate?.editTodoList(list: list)
+        navigationController?.popViewController(animated: true)
     }
 }
 

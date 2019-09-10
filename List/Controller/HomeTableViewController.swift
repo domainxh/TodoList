@@ -78,24 +78,18 @@ extension HomeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        return
+        let editTodoListViewController = NewListViewController()
+        editTodoListViewController.delegate = self
+        editTodoListViewController.list = viewModel.todoLists[indexPath.row]
+        navigationController?.pushViewController(editTodoListViewController, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
-            let editTodoListViewController = NewListViewController()
-            let navigationController = BaseNavigationController(rootViewController: editTodoListViewController)
-            editTodoListViewController.delegate = self
-            editTodoListViewController.list = self.viewModel.todoLists[indexPath.row]
-            self.present(navigationController, animated: true, completion: nil)
-        }
-
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             self.viewModel.deleteTodoList(index: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-
-        return [deleteAction, editAction]
+        return [deleteAction]
     }
 }
 
