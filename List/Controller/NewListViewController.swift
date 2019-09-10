@@ -7,14 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
-protocol CreateTodoListDelegate: AnyObject {
+protocol TodoListDelegate: AnyObject {
+    func editTodoList(list: List)
     func addTodoList(description: String, date: Date?)
 }
 
 class NewListViewController: UIViewController {
 
-    weak var delegate: CreateTodoListDelegate?
+    weak var delegate: TodoListDelegate?
+    
+    var list: List? {
+        didSet {
+            textView.text = list?.name
+            textView.textColor = .black
+        }
+    }
 
     private let textView: UITextView = {
         let tv = UITextView()
@@ -38,7 +47,12 @@ class NewListViewController: UIViewController {
         setupNavigationBar()
         setupUI()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationItem.title = list == nil ? "Create New List" : "Edit List"
+    }
+
     private func setupUI() {
         view.addSubview(textView)
         view.addConstraintsWithFormat("H:|-[v0]-|", views: textView)
@@ -46,7 +60,6 @@ class NewListViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        navigationItem.title = "Create New List"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }
@@ -56,9 +69,21 @@ class NewListViewController: UIViewController {
     }
 
     @objc private func handleSave() {
+        list == nil ? createList() : editList()
+    }
+
+    private func createList() {
         guard let text = textView.text, text != "Describe what this list is for" else { return }
         dismiss(animated: true) {
             self.delegate?.addTodoList(description: self.textView.text, date: nil)
+        }
+    }
+
+    private func editList() {
+        dismiss(animated: true) {
+            guard let list = self.list else { return }
+            list.name = self.textView.text
+            self.delegate?.editTodoList(list: list)
         }
     }
 }

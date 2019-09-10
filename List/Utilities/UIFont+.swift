@@ -14,8 +14,4 @@ extension UIFont {
     class var homeListLabel: UIFont {
         return UIFont(name: kFontAvenirNext, size: 20)!
     }
-    
-//    class var homeListLabel: UIFont {
-//        return UIFont(name: kFontAvenirNext, size: 20)!
-//    }
 }

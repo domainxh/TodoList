@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		21A8DD1A2321DCA200E2A770 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD192321DCA200E2A770 /* AppDelegate.swift */; };
 		21A8DD1C2321DCA200E2A770 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD1B2321DCA200E2A770 /* HomeTableViewController.swift */; };
-		21A8DD222321DCA200E2A770 /* List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD202321DCA200E2A770 /* List.xcdatamodeld */; };
+		21A8DD222321DCA200E2A770 /* ListModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD202321DCA200E2A770 /* ListModel.xcdatamodeld */; };
 		21A8DD242321DCA300E2A770 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A8DD232321DCA300E2A770 /* Assets.xcassets */; };
 		21A8DD302321E06500E2A770 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD2F2321E06500E2A770 /* UIColor+.swift */; };
 		21A8DD322321E47500E2A770 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD312321E47500E2A770 /* BaseNavigationController.swift */; };
 		21A8DD34232209AB00E2A770 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD33232209AB00E2A770 /* UIView+.swift */; };
 		21A8DD3623220A3A00E2A770 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A8DD3523220A3A00E2A770 /* UIFont+.swift */; };
 		21E3F4632323956F00329DF8 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4622323956F00329DF8 /* HomeCell.swift */; };
-		21E3F4672323A16B00329DF8 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4662323A16B00329DF8 /* ListModel.swift */; };
 		21E3F46B2323ACE700329DF8 /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F46A2323ACE700329DF8 /* NewListViewController.swift */; };
 		21E3F46E2325E70900329DF8 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F46D2325E70900329DF8 /* ListViewModel.swift */; };
+		21E3F47A2327333B00329DF8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E3F4792327333B00329DF8 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +33,9 @@
 		21A8DD33232209AB00E2A770 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		21A8DD3523220A3A00E2A770 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		21E3F4622323956F00329DF8 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
-		21E3F4662323A16B00329DF8 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		21E3F46A2323ACE700329DF8 /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		21E3F46D2325E70900329DF8 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		21E3F4792327333B00329DF8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,15 +68,14 @@
 		21A8DD182321DCA200E2A770 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				21E3F47523272B2900329DF8 /* CoreData */,
 				21A8DD2E2321E04A00E2A770 /* Utilities */,
 				21A8DD3A23220A6E00E2A770 /* Controller */,
 				21E3F46C2325E6DC00329DF8 /* ViewModel */,
-				21A8DD3723220A5700E2A770 /* Model */,
 				21A8DD3923220A6400E2A770 /* View */,
 				21A8DD192321DCA200E2A770 /* AppDelegate.swift */,
 				21A8DD232321DCA300E2A770 /* Assets.xcassets */,
 				21A8DD282321DCA300E2A770 /* Info.plist */,
-				21A8DD202321DCA200E2A770 /* List.xcdatamodeld */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -89,14 +88,6 @@
 				21A8DD3523220A3A00E2A770 /* UIFont+.swift */,
 			);
 			path = Utilities;
-			sourceTree = "<group>";
-		};
-		21A8DD3723220A5700E2A770 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				21E3F4662323A16B00329DF8 /* ListModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		21A8DD3923220A6400E2A770 /* View */ = {
@@ -123,6 +114,15 @@
 				21E3F46D2325E70900329DF8 /* ListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		21E3F47523272B2900329DF8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				21A8DD202321DCA200E2A770 /* ListModel.xcdatamodeld */,
+				21E3F4792327333B00329DF8 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +194,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E3F4672323A16B00329DF8 /* ListModel.swift in Sources */,
 				21E3F46B2323ACE700329DF8 /* NewListViewController.swift in Sources */,
 				21A8DD34232209AB00E2A770 /* UIView+.swift in Sources */,
 				21A8DD1C2321DCA200E2A770 /* HomeTableViewController.swift in Sources */,
@@ -203,7 +202,8 @@
 				21A8DD3623220A3A00E2A770 /* UIFont+.swift in Sources */,
 				21A8DD1A2321DCA200E2A770 /* AppDelegate.swift in Sources */,
 				21A8DD322321E47500E2A770 /* BaseNavigationController.swift in Sources */,
-				21A8DD222321DCA200E2A770 /* List.xcdatamodeld in Sources */,
+				21E3F47A2327333B00329DF8 /* CoreDataStack.swift in Sources */,
+				21A8DD222321DCA200E2A770 /* ListModel.xcdatamodeld in Sources */,
 				21E3F46E2325E70900329DF8 /* ListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,13 +387,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		21A8DD202321DCA200E2A770 /* List.xcdatamodeld */ = {
+		21A8DD202321DCA200E2A770 /* ListModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				21A8DD212321DCA200E2A770 /* List.xcdatamodel */,
 			);
 			currentVersion = 21A8DD212321DCA200E2A770 /* List.xcdatamodel */;
-			path = List.xcdatamodeld;
+			path = ListModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

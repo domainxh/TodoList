@@ -6,22 +6,42 @@
 //  Copyright © 2019 Xiaoheng Pan. All rights reserved.
 //
 
-import Foundation
+import CoreData
+import UIKit
 
 class ListViewModel {
-    var todoLists = [ListModel]()
+
+    var todoLists = [List]()
+    private let context = CoreDataStack.shared.persistentContainer.viewContext
+    
+    func fetchTodoLists() {
+        let fetchRequest = NSFetchRequest<List>(entityName: "List")
+
+        do {
+            let lists = try context.fetch(fetchRequest)
+            self.todoLists = lists
+        } catch let error {
+            print("Failed to fetch todo lists: \(error)")
+        }
+    }
 
     func addTodoList(description: String, date: Date?) {
-        let listModel = ListModel(name: description, date: date)
-        todoLists.append(listModel)
+        let todoLists = NSEntityDescription.insertNewObject(forEntityName: "List", into: context)
+        todoLists.setValue(description, forKey: "name")
+        saveTodoList()
     }
 
     func deleteTodoList(index: Int) {
-        todoLists.remove(at: index)
+        context.delete(todoLists[index])
+        saveTodoList()
     }
-
-    func editTodoList(list: ListModel, index: Int) {
-        todoLists[index].name = list.name
-        todoLists[index].date = list.date
+    
+    func saveTodoList() {
+        do {
+            try context.save()
+            fetchTodoLists()
+        } catch let error {
+            print("Failed to save: \(error)")
+        }
     }
 }
