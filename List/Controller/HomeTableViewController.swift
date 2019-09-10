@@ -27,8 +27,10 @@ class HomeTableViewController: UITableViewController {
 
     private func setupNavigationBar() {
         navigationItem.title = "To Do Lists"
-        let image = UIImage(named: "PlusButton")?.withRenderingMode(.alwaysOriginal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleAdd))
+        let plusImage = UIImage(named: "PlusButton")?.withRenderingMode(.alwaysOriginal)
+        let resetImage = UIImage(named: "ResetButton")?.withRenderingMode(.alwaysOriginal)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: plusImage, style: .plain, target: self, action: #selector(handleAdd))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: resetImage, style: .plain, target: self, action: #selector(handleReset))
     }
 
     @objc private func handleAdd() {
@@ -36,6 +38,11 @@ class HomeTableViewController: UITableViewController {
         let navigationController = BaseNavigationController(rootViewController: newListViewController)
         newListViewController.delegate = self
         present(navigationController, animated: true, completion: nil)
+    }
+
+    @objc private func handleReset() {
+        viewModel.resetTodoLists()
+        tableView.reloadData()
     }
 }
 

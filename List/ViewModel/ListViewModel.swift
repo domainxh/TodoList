@@ -13,7 +13,7 @@ class ListViewModel {
 
     var todoLists = [List]()
     private let context = CoreDataStack.shared.persistentContainer.viewContext
-    
+
     func fetchTodoLists() {
         let fetchRequest = NSFetchRequest<List>(entityName: "List")
 
@@ -36,7 +36,17 @@ class ListViewModel {
         context.delete(todoLists[index])
         saveTodoList()
     }
-    
+
+    func resetTodoLists() {
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: List.fetchRequest())
+        do {
+            try context.execute(deleteRequest)
+            todoLists.removeAll()
+        } catch let error {
+            print("Batch delete request failed: \(error)")
+        }
+    }
+
     func saveTodoList() {
         do {
             try context.save()
