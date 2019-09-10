@@ -41,7 +41,6 @@ class ListViewModel {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: List.fetchRequest())
         do {
             try context.execute(deleteRequest)
-            todoLists.removeAll()
         } catch let error {
             print("Batch delete request failed: \(error)")
         }

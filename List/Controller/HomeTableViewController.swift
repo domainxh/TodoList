@@ -42,7 +42,16 @@ class HomeTableViewController: UITableViewController {
 
     @objc private func handleReset() {
         viewModel.resetTodoLists()
-        tableView.reloadData()
+    // This provides a smoother animation over over tableView.reloadData()
+        var indexPathsToRemove = [IndexPath]()
+
+        for (index, _) in viewModel.todoLists.enumerated() {
+            let indexPath = IndexPath(row: index, section: 0)
+            indexPathsToRemove.append(indexPath)
+        }
+        
+        viewModel.todoLists.removeAll()
+        tableView.deleteRows(at: indexPathsToRemove, with: .left)
     }
 }
 
