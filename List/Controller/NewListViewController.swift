@@ -49,7 +49,6 @@ class NewListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
         textView.delegate = self
         setupNavigationBar()
         setupUI()
