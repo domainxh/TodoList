@@ -25,9 +25,10 @@ class ListViewModel {
         }
     }
 
-    func addTodoList(description: String, date: Date?) {
+    func addTodoList(description: String, date: Date) {
         let todoLists = NSEntityDescription.insertNewObject(forEntityName: "List", into: context)
         todoLists.setValue(description, forKey: "name")
+        todoLists.setValue(date, forKey: "date")
         saveTodoList()
     }
 

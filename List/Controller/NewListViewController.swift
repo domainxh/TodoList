@@ -11,17 +11,20 @@ import CoreData
 
 protocol TodoListDelegate: AnyObject {
     func editTodoList(list: List)
-    func addTodoList(description: String, date: Date?)
+    func addTodoList(description: String, date: Date)
 }
 
 class NewListViewController: UIViewController {
 
     weak var delegate: TodoListDelegate?
+    private let dateLabelHeight = 30
+    private let currentDate = Date()
     
     var list: List? {
         didSet {
             textView.text = list?.name
             textView.textColor = .black
+            dateLabel.text = list?.date?.convertToStringWithDetail()
         }
     }
 
@@ -34,9 +37,12 @@ class NewListViewController: UIViewController {
         return tv
     }()
 
-    private let dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.homeListLabel
+        label.textColor = UIColor.lightGray
+        label.text = self.currentDate.convertToStringWithDetail()
+        label.textAlignment = .center
+        label.font = UIFont.subtitleLabel
         return label
     }()
 
@@ -54,9 +60,10 @@ class NewListViewController: UIViewController {
     }
 
     private func setupUI() {
-        view.addSubview(textView)
+        view.addSubviews(textView, dateLabel)
         view.addConstraintsWithFormat("H:|-[v0]-|", views: textView)
-        view.addConstraintsWithFormat("V:|-[v0]-|", views: textView)
+        view.addConstraintsWithFormat("H:|-[v0]-|", views: dateLabel)
+        view.addConstraintsWithFormat("V:|-14-[v0(\(dateLabelHeight))]-[v1]-|", views: dateLabel, textView)
     }
 
     private func setupNavigationBar() {
@@ -75,7 +82,8 @@ class NewListViewController: UIViewController {
     private func createList() {
         guard let text = textView.text, text != "Describe what this list is for" else { return }
         dismiss(animated: true) {
-            self.delegate?.addTodoList(description: self.textView.text, date: nil)
+            guard let description = self.textView.text else { return }
+            self.delegate?.addTodoList(description: description, date: self.currentDate)
         }
     }
 
@@ -83,6 +91,7 @@ class NewListViewController: UIViewController {
         dismiss(animated: true) {
             guard let list = self.list else { return }
             list.name = self.textView.text
+            list.date = self.currentDate
             self.delegate?.editTodoList(list: list)
         }
     }

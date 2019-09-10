@@ -92,7 +92,7 @@ extension HomeTableViewController: TodoListDelegate {
         tableView.reloadRows(at: [reloadIndexPath], with: .middle)
     }
 
-    func addTodoList(description: String, date: Date?) {
+    func addTodoList(description: String, date: Date) {
         viewModel.addTodoList(description: description, date: date)
         let newIndexPath = IndexPath(row: viewModel.todoLists.count - 1, section: 0)
         tableView.insertRows(at: [newIndexPath], with: .automatic)

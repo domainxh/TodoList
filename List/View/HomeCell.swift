@@ -13,23 +13,36 @@ class HomeCell: UITableViewCell {
     private let horizontalPadding = 12
     private let verticalPadding = 12
 
-    private let label: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Place holder text"
         label.font = UIFont.homeListLabel
         return label
     }()
 
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.lightGray
+        label.text = "9/10/19"
+        label.font = UIFont.subtitleLabel
+        return label
+    }()
+
     private func setupView() {
-        addSubview(label)
-        addConstraintsWithFormat("H:|-\(horizontalPadding)-[v0]|", views: label)
-        addConstraintsWithFormat("V:|-\(verticalPadding)-[v0]-\(verticalPadding)-|", views: label)
+        addSubviews(descriptionLabel, dateLabel)
+        addConstraintsWithFormat("H:|-\(horizontalPadding)-[v0]-\(horizontalPadding)-|", views: descriptionLabel)
+        addConstraintsWithFormat("H:|-\(horizontalPadding)-[v0]-\(horizontalPadding)-|", views: dateLabel)
+        addConstraintsWithFormat("V:|-\(verticalPadding)-[v0]-[v1]-\(verticalPadding)-|", views: descriptionLabel, dateLabel)
     }
 
     func configureCell(listViewModel: ListViewModel, indexPath: IndexPath) {
         setupView()
-        let todoDescription = listViewModel.todoLists[indexPath.row].name
-        label.text = todoDescription
+        let list = listViewModel.todoLists[indexPath.row]
+        let description = list.name
+        let date = list.date
+
+        dateLabel.text = date?.convertToString()
+        descriptionLabel.text = description
     }
 }
 
